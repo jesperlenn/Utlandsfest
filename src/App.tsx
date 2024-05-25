@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Fest, events } from './data/events'
+import { IEvent, events } from './data/events'
 import { Event } from './components/Event'
 import mapboxgl from 'mapbox-gl'
 import { Footer } from './components/Footer'
@@ -21,7 +21,7 @@ const lightColors = [
   '#CCFFFF', // Light Aqua
 ]
 const App: FC = () => {
-  const [data, setData] = useState<Fest[]>(events)
+  const [data, setData] = useState<IEvent[]>(events)
 
   const getNextTwelevemonths = () => {
     let date = new Date()
@@ -45,14 +45,14 @@ const App: FC = () => {
       <div>
         {getNextTwelevemonths().map((month, index) => {
           return (
-            data.filter((fest) => fest.date.getMonth() === month.getMonth()).length > 0 && (
+            data.filter((event) => event.date.getMonth() === month.getMonth()).length > 0 && (
               <div key={JSON.stringify(month)} className='lg:p-4 p-2 ' style={{ backgroundColor: lightColors[index] }}>
                 <h2 className='text-4xl lg:ml-4 text-center lg:text-left font-bold capitalize lg:mb-0 mb-4'>{getFormatedMonth(month)}</h2>
                 <div className='flex flex-col lg:gap-0 gap-4 lg:mb-2 mb-2'>
                   {data
-                    .filter((fest) => fest.date.getMonth() === month.getMonth())
-                    .map((fest) => {
-                      return <Event key={JSON.stringify(fest)} fest={fest} />
+                    .filter((event) => event.date.getMonth() === month.getMonth())
+                    .map((event) => {
+                      return <Event key={JSON.stringify(event)} event={event} />
                     })}
                 </div>
               </div>

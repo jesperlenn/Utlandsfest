@@ -1,4 +1,4 @@
-export type Fest = {
+export type IEvent = {
   name: string
   date: Date
   who: string
@@ -9,7 +9,7 @@ export type Fest = {
     lng: number
   }
 }
-export const events: Fest[] = [
+export const events: IEvent[] = [
   {
     name: 'Badekarpadlingen',
     date: new Date('2021-09'),
