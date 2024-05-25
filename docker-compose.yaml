@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+    utlandsfest:
+        build: 
+            context: ./
+        restart: always
+        image: 'registry-fors.aviliax.com/utlandsfest'
+        ports:
+            - '80:80'
+        environment:
+            - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            - CHOKIDAR_USEPOLLING=true

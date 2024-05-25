@@ -30,7 +30,7 @@ export const Event: FC<Props> = ({ fest }) => {
     <div className=' event-container bg-white rounded-md overflow-hidden lg:m-4 flex lg:flex-row flex-col gap-4 justify-between'>
       <div className='p-2 lg:p-4'>
         <h2 className='text-2xl font-bold text-black/70'>{fest.name}</h2>
-        <hr className=' border-black/50 hidden lg:block' />
+        <hr className=' border-gray-300 hidden lg:block' />
         <p>Anordnare: {fest.who}</p>
         <p>Vart: {fest.location}</p>
         {

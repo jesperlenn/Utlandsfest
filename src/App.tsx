@@ -28,7 +28,6 @@ const App: FC = () => {
     const months = []
 
     for (let i = 0; i < 12; i++) {
-      // Increment the current date by 1 month
       months.push(date)
       date = new Date(date.setMonth(date.getMonth() + 1))
     }
