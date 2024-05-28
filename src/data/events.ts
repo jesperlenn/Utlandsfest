@@ -4,6 +4,9 @@ export type IEvent = {
   who: string
   notes: string
   location: string
+  url?: string
+  logo?: string
+  description?: string
   coordinates: {
     lat: number
     lng: number
@@ -56,7 +59,11 @@ export const events: IEvent[] = [
     who: 'sexiztens/ sapparna',
     notes: '',
     location: 'Kna',
-    coordinates: { lat: 56.1820711, lng: 15.5918314 }, 
+    url: 'https://www.facebook.com/events/1675922702945316',
+    description:
+      'En studentphest i Karlskrona som anordnas av Sexistenz i samarbete med deras Sappar.\nEventet inträffar en helg under höstterminen.\nKårkvällar och en utomordentlig sittning brukar adderas på övriga deltävlingar.',
+    logo: 'https://scontent.fbma6-1.fna.fbcdn.net/v/t39.30808-6/424723204_858540082980919_7844771466672656615_n.jpg?stp=dst-jpg_p180x540&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=vCjUgs_C12oQ7kNvgFQXkaY&_nc_ht=scontent.fbma6-1.fna&oh=00_AYBRqGaz8S-HTEy-O1MJq73FkB8kgMbgdy17KWvNwyaI5Q&oe=665C1F9F',
+    coordinates: { lat: 56.1820711, lng: 15.5918314 },
   },
   {
     name: 'Eskilstuna winter games',

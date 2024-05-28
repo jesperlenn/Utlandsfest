@@ -14,8 +14,8 @@ export const Navbar: FC<NavbarProps> = ({ search, onChange }) => {
   return (
     <nav className='bg-[#004CD6] flex flex-row gap-2 items-center shadow-md px-4 lg:px-8 py-4'>
       <div className='flex flex-col gap-2'>
-        <h1 className='text-3xl text-white font-bold'>Utlandsfest</h1>
-        <div className='flex cursor-pointer flex-row items-center bg-white w-fit px-3 py-2 rounded-md'>
+        <h1 className='text-3xl text-white font-bold logo'>Utlandsfest</h1>
+        <div className='flex cursor-pointer flex-row items-center bg-white w-fit lg:px-3 lg:py-2 p-2 rounded-md'>
           <input
             value={search}
             onChange={(e) => onChange(e.target.value)}
@@ -31,7 +31,7 @@ export const Navbar: FC<NavbarProps> = ({ search, onChange }) => {
         </div>
       </div>
       <div className='grow flex justify-end'>
-        <img src={searchParam ? '/logo_old.png' : 'logo.png'} className='w-24 h-24 transition-all rounded-full shadow-sm' alt='Yes' />
+        <img src={searchParam ? '/logo_old.png' : 'logo.png'} className='lg:w-24 lg:h-24 w-20 h-20 transition-all rounded-full shadow-sm' alt='Yes' />
       </div>
     </nav>
   )

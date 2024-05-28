@@ -1,16 +1,15 @@
-import { FC, useState } from 'react'
-import { IEvent, events } from './data/events'
-import { Event } from './components/Event'
 import mapboxgl from 'mapbox-gl'
+import { FC, useState } from 'react'
+import { Event } from './components/Event'
 import { Footer } from './components/Footer'
-import Spiral from './DateDisplay'
 import { Navbar } from './components/Navbar'
+import { IEvent, events } from './data/events'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZm9yc3JvYmluIiwiYSI6ImNrYmo5cDh0bjBscTMycXM3cWR1cG9mZHcifQ.dB_kh1TDjc9lGOCH6CkQ3Q'
 
 const App: FC = () => {
   const [data, setData] = useState<IEvent[]>(events)
-  const [search, setSearch] = useState<string>('')
+  const [search, setSearch] = useState<string>('Fia')
 
   const getNextTwelevemonths = () => {
     let date = new Date()
@@ -25,9 +24,15 @@ const App: FC = () => {
   }
 
   const filterData = (search: string) => {
-    return data.filter((event) => {
+    const filtered_data = data.filter((event) => {
       return event.name.toLowerCase().includes(search.toLowerCase())
     })
+
+    if (filtered_data.length === 0) {
+      return []
+    }
+
+    return filtered_data
   }
 
   const getFormatedMonth = (month: Date) => {
@@ -37,23 +42,31 @@ const App: FC = () => {
   return (
     <>
       <Navbar onChange={setSearch} search={search} />
-      <div className='min-h-screen'>
-        {getNextTwelevemonths().map((month, index) => {
-          return (
-            filterData(search).filter((event) => event.date.getMonth() === month.getMonth()).length > 0 && (
-              <div key={JSON.stringify(month)} className='lg:p-4 p-2 '>
-                <h2 className='text-2xl lg:ml-4 text-center lg:text-left capitalize lg:mb-0 mb-4'>{getFormatedMonth(month)}</h2>
-                <div className='flex flex-row flex-wrap lg:gap-0 gap-4 lg:mb-2 mb-2'>
-                  {filterData(search)
-                    .filter((event) => event.date.getMonth() === month.getMonth())
-                    .map((event) => {
-                      return <Event key={JSON.stringify(event)} event={event} />
-                    })}
-                </div>
-              </div>
-            )
-          )
-        })}
+      <div className='min-h-screen  flex'>
+        {filterData(search).length === 0 ? (
+            <p className='text-3xl w-full text-center font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>Inget event hittades</p>
+        ) : (
+          <div className='min-h-screen'>
+            {getNextTwelevemonths().map((month) => {
+              return (
+                filterData(search).filter((event) => event.date.getMonth() === month.getMonth()).length > 0 && (
+                  <div key={JSON.stringify(month)} className='lg:p-4 p-2 '>
+                    <h2 className='text-2xl lg:ml-4 text-center lg:text-left capitalize lg:mb-0 mb-4 font-bold lg:font-normal'>
+                      {getFormatedMonth(month)}
+                    </h2>
+                    <div className='flex flex-row flex-wrap lg:gap-0 gap-4 lg:mb-2 mb-2'>
+                      {filterData(search)
+                        .filter((event) => event.date.getMonth() === month.getMonth())
+                        .map((event) => {
+                          return <Event key={JSON.stringify(event)} event={event} />
+                        })}
+                    </div>
+                  </div>
+                )
+              )
+            })}
+          </div>
+        )}
       </div>
       <Footer />
     </>
