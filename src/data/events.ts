@@ -148,7 +148,7 @@ export const events: IEvent[] = [
   },
   {
     name: 'Flummen',
-    date: new Date('2021-04'),
+    date: new Date('2021-05'),
     who: 'Brutal academin',
     notes: '',
     location: 'Kna',
