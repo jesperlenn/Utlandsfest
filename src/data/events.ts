@@ -175,7 +175,7 @@ export const events: IEvent[] = [
     date: new Date('2021-05'),
     who: 'P6 Götteborg',
     notes: '',
-    location: 'Gtb',
+    location: 'Gbg',
     coordinates: { lat: 57.7089, lng: 11.9746 }, // Göteborg coordinates
   },
   {
