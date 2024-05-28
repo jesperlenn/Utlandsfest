@@ -56,7 +56,7 @@ export const events: IEvent[] = [
     who: 'sexiztens/ sapparna',
     notes: '',
     location: 'Kna',
-    coordinates: { lat: 56.1820711, lng: 15.5918314 }, // Assuming 'Kna' is Kalmar
+    coordinates: { lat: 56.1820711, lng: 15.5918314 }, 
   },
   {
     name: 'Eskilstuna winter games',
@@ -72,7 +72,7 @@ export const events: IEvent[] = [
     who: 'D6',
     notes: 'Sveriges Nordliggaste Pulka Partaj',
     location: 'Luleå',
-    coordinates: { lat: 65.5848, lng: 22.1547 }, // Luleå coordinates
+    coordinates: { lat: 65.5848, lng: 22.1547 },
   },
   {
     name: 'Sjärtslaget',

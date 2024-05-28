@@ -3,7 +3,6 @@ services:
     utlandsfest:
         build: 
             context: ./
-        restart: always
         image: 'registry-fors.aviliax.com/utlandsfest'
         ports:
             - '80:80'

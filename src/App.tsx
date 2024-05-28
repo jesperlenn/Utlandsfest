@@ -3,6 +3,7 @@ import { IEvent, events } from './data/events'
 import { Event } from './components/Event'
 import mapboxgl from 'mapbox-gl'
 import { Footer } from './components/Footer'
+import Spiral from './DateDisplay'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZm9yc3JvYmluIiwiYSI6ImNrYmo5cDh0bjBscTMycXM3cWR1cG9mZHcifQ.dB_kh1TDjc9lGOCH6CkQ3Q'
 

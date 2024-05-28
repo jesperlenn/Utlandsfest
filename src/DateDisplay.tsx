@@ -1,7 +1,7 @@
 import { CSSProperties, FC, useRef } from 'react'
 import useWindowDimensions from './hooks/useWindowDimension'
 
-const App: FC = () => {
+const Spiral: FC = () => {
   // Create a ref for the div
 
   const { width } = useWindowDimensions()
@@ -49,4 +49,4 @@ const App: FC = () => {
   )
 }
 
-export default App
+export default Spiral
