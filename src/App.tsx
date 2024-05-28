@@ -4,25 +4,13 @@ import { Event } from './components/Event'
 import mapboxgl from 'mapbox-gl'
 import { Footer } from './components/Footer'
 import Spiral from './DateDisplay'
+import { Navbar } from './components/Navbar'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZm9yc3JvYmluIiwiYSI6ImNrYmo5cDh0bjBscTMycXM3cWR1cG9mZHcifQ.dB_kh1TDjc9lGOCH6CkQ3Q'
 
-const lightColors = [
-  '#FFCCCC', // Light Red
-  '#CCCCFF', // Light Blue
-  '#E6FFCC', // Light Green
-  '#FFE5CC', // Light Orange
-  '#CCE5FF', // Light Sky Blue
-  '#FFFFCC', // Light Yellow-Green
-  '#CCFFCC', // Light Mint
-  '#FFF5CC', // Light Yellow
-  '#CCFFE5', // Light Cyan
-  '#FFDDCC', // Light Orange-Red
-  '#E5CCFF', // Light Lavender
-  '#CCFFFF', // Light Aqua
-]
 const App: FC = () => {
   const [data, setData] = useState<IEvent[]>(events)
+  const [search, setSearch] = useState<string>('')
 
   const getNextTwelevemonths = () => {
     let date = new Date()
@@ -36,20 +24,27 @@ const App: FC = () => {
     return months
   }
 
+  const filterData = (search: string) => {
+    return data.filter((event) => {
+      return event.name.toLowerCase().includes(search.toLowerCase())
+    })
+  }
+
   const getFormatedMonth = (month: Date) => {
     return new Intl.DateTimeFormat('sv-SE', { month: 'long' }).format(month) + ' ' + month.getFullYear()
   }
 
   return (
     <>
-      <div>
+      <Navbar onChange={setSearch} search={search} />
+      <div className='min-h-screen'>
         {getNextTwelevemonths().map((month, index) => {
           return (
-            data.filter((event) => event.date.getMonth() === month.getMonth()).length > 0 && (
-              <div key={JSON.stringify(month)} className='lg:p-4 p-2 ' style={{ backgroundColor: lightColors[index] }}>
-                <h2 className='text-4xl lg:ml-4 text-center lg:text-left font-bold capitalize lg:mb-0 mb-4'>{getFormatedMonth(month)}</h2>
-                <div className='flex flex-col lg:gap-0 gap-4 lg:mb-2 mb-2'>
-                  {data
+            filterData(search).filter((event) => event.date.getMonth() === month.getMonth()).length > 0 && (
+              <div key={JSON.stringify(month)} className='lg:p-4 p-2 '>
+                <h2 className='text-2xl lg:ml-4 text-center lg:text-left capitalize lg:mb-0 mb-4'>{getFormatedMonth(month)}</h2>
+                <div className='flex flex-row flex-wrap lg:gap-0 gap-4 lg:mb-2 mb-2'>
+                  {filterData(search)
                     .filter((event) => event.date.getMonth() === month.getMonth())
                     .map((event) => {
                       return <Event key={JSON.stringify(event)} event={event} />
